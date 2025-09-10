@@ -1,0 +1,132 @@
+.review-container {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.review-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-btn {
+  background-color: #f0f0f0;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+}
+
+.arrow-btn:hover {
+  background-color: #0056b3;
+}
+
+.review-cards-container {
+  display: flex;
+  overflow: hidden;
+  width: 80%;
+  gap: 1rem;
+}
+
+.review-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 0 0 30%; /* Adjust card width */
+  text-align: center;
+}
+
+.review-img-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.review-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.review-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.review-author {
+  font-size: 0.9rem;
+  color: #555;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .review-row {
+    position: relative; 
+  }
+
+  .arrow-btn {
+    font-size: 1.2rem;
+    padding: 0.3rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: #0056b3; 
+    color: #fff;
+  }
+
+  .arrow-btn:first-of-type {
+    left: 10px;
+  }
+
+  .arrow-btn:last-of-type {
+    right: 10px; 
+  }
+
+  .review-cards-container {
+    display: flex;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    width: 100%; 
+  }
+
+  .review-card {
+    flex: 0 0 90%; 
+    padding: 1rem; 
+    margin: 0 auto; 
+    scroll-snap-align: center; 
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card {
+    flex: 0 0 95%; 
+    padding: 0.8rem; 
+  }
+
+  .review-img {
+    width: 50px; 
+    height: 50px;
+  }
+}
+
+body {
+    overflow-x: hidden;
+  }

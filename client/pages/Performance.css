@@ -1,0 +1,66 @@
+.performance-title {
+    color: #007bff; /* Primary blue */
+    font-weight: 600;
+  }
+  
+  .performance-card {
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .performance-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .overall-card {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Blue gradient */
+    color: white;
+  }
+  
+  .course-card {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%); /* Gray gradient */
+    color: white;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .course-name {
+    font-weight: 500;
+  }
+  
+  .table-header {
+    background-color: #f8f9fa; /* Light gray */
+    color: #343a40; /* Dark gray */
+  }
+  
+  .table-row:hover {
+    background-color: #e9ecef; /* Slightly darker gray on hover */
+  }
+  
+  .grade-success {
+    color: #28a745; /* Green for grades >= 80 */
+    font-weight: 600;
+  }
+  
+  .grade-warning {
+    color: #ffc107; /* Yellow for grades 50–79 */
+    font-weight: 600;
+  }
+  
+  .grade-danger {
+    color: #dc3545; /* Red for grades < 50 */
+    font-weight: 600;
+  }
+  
+  .performance-table {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }

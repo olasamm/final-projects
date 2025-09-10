@@ -1,0 +1,30 @@
+.navbar {
+    box-shadow: 0 4px 6px #0000001a;
+    background-color: #23194f !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    text-decoration: underline;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-color:#421cf7;
+}
+
+
+
+
