@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import '../Signup.css';
+import './lecturerSignup.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LecturerSignup = () => {
@@ -32,7 +32,7 @@ const LecturerSignup = () => {
 
     const allData = { id: userId, name, mail, password };
     console.log('LecturerSignup.jsx: Sending to /lecturer-signup:', allData);
-    const url = 'https://final-final-project-5.onrender.com/lecturer-signup'; 
+    const url = 'http://localhost:9000/lecturer-signup'; 
 
     try {
       const res = await axios.post(url, allData);
@@ -58,68 +58,95 @@ const LecturerSignup = () => {
   };
 
   return (
-    <div className="container-fluid vh-100">
-      <div className="row h-100">
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-5">
-          <h3 className="mb-4">Create Lecturer Account</h3>
+    <div className="lecturer-signup-container">
+      <div className="lecturer-signup-card">
+        <div className="lecturer-signup-left">
+          <h2 className="lecturer-signup-title">Create Lecturer Account</h2>
+          
+
           {message && (
-            <p
-              className={`alert mt-3 text-center ${
-                messageType === 'success' ? 'alert-success' : 'alert-danger'
+            <div
+              className={`alert-message ${
+                messageType === 'success' ? 'success' : 'error'
               }`}
             >
               {message}
-            </p>
+            </div>
           )}
-          <form className="w-75" onSubmit={handleSignup}>
-            <div className="mb-3">
+
+          <form className="lecturer-signup-form" onSubmit={handleSignup}>
+            <div className="lecturer-input-group">
+              <div className="lecturer-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/>
+                </svg>
+              </div>
               <input
                 type="text"
-                className="form-control rounded-pill border-black"
+                className="lecturer-form-input"
                 placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="mb-3">
+
+            <div className="lecturer-input-group">
+              <div className="lecturer-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                </svg>
+              </div>
               <input
                 type="text"
-                className="form-control rounded-pill border-black"
+                className="lecturer-form-input"
                 placeholder="Lecturer ID"
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}
               />
             </div>
-            <div className="mb-3">
+
+            <div className="lecturer-input-group">
+              <div className="lecturer-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+                </svg>
+              </div>
               <input
                 type="email"
-                className="form-control rounded-pill border-black"
+                className="lecturer-form-input"
                 placeholder="Email"
                 value={mail}
                 onChange={(e) => setMail(e.target.value)}
               />
             </div>
-            <div className="mb-3">
+
+            <div className="lecturer-input-group">
+              <div className="lecturer-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="currentColor"/>
+                </svg>
+              </div>
               <input
                 type="password"
-                className="form-control rounded-pill border-black"
+                className="lecturer-form-input"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="d-grid">
-              <button type="submit" className="btn btn-outline-dark rounded-pill">
-                REGISTER
-              </button>
-            </div>
+
+
+            <button type="submit" className="lecturer-signup-button">
+              REGISTER
+            </button>
           </form>
         </div>
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-primary p-5">
-          <h3 className="text-center">Welcome to Lecturer Portal</h3>
-          <p className="mt-3">Already have an account?</p>
+
+        <div className="lecturer-signup-right">
+          <h2 className="welcome-title">Welcome to Lecturer Portal</h2>
+          <p className="welcome-text">Already have an account?</p>
           <Link to="/lecturerSignin">
-            <button className="btn btn-dark rounded-pill px-4">LOGIN</button>
+            <button className="lecturer-signin-button">LOGIN</button>
           </Link>
         </div>
       </div>

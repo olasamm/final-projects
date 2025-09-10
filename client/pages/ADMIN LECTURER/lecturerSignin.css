@@ -1,5 +1,5 @@
-/* Modern Lecturer Signup Design */
-.lecturer-signup-container {
+/* Modern Lecturer Signin Design */
+.lecturer-signin-container {
   min-height: 100vh;
   background-color: #2C206D;
   display: flex;
@@ -9,7 +9,7 @@
   font-family: 'Arial', sans-serif;
 }
 
-.lecturer-signup-card {
+.lecturer-signin-card {
   background: white;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -20,7 +20,7 @@
   min-height: 500px;
 }
 
-.lecturer-signup-left {
+.lecturer-signin-left {
   flex: 1.2;
   padding: 40px 30px;
   display: flex;
@@ -28,7 +28,7 @@
   justify-content: center;
 }
 
-.lecturer-signup-right {
+.lecturer-signin-right {
   flex: 0.8;
   background: linear-gradient(135deg, #4A2FFC, #2C206D);
   padding: 40px 30px;
@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.lecturer-signup-title {
+.lecturer-signin-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #000;
@@ -47,35 +47,7 @@
   margin-bottom: 30px;
 }
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.social-icon {
-  width: 50px;
-  height: 50px;
-  border: 2px solid #000;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-  background: #f0f0f0;
-}
-
-.social-icon svg {
-  color: #000;
-}
-
-.lecturer-signup-form {
+.lecturer-signin-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -123,53 +95,7 @@
   color: #999;
 }
 
-.role-selection {
-  display: flex;
-  gap: 30px;
-  margin: 10px 0;
-}
-
-.role-option {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 16px;
-  color: #000;
-  position: relative;
-}
-
-.role-option input[type="radio"] {
-  display: none;
-}
-
-.checkmark {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #000;
-  border-radius: 50%;
-  margin-right: 10px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.role-option input[type="radio"]:checked + .checkmark {
-  border-color: #4A2FFC;
-  background: #4A2FFC;
-}
-
-.role-option input[type="radio"]:checked + .checkmark::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  background: white;
-  border-radius: 50%;
-}
-
-.lecturer-signup-button {
+.lecturer-signin-button {
   background: white;
   color: #000;
   border: 2px solid #000;
@@ -182,7 +108,7 @@
   margin-top: 20px;
 }
 
-.lecturer-signup-button:hover {
+.lecturer-signin-button:hover {
   background: #000;
   color: white;
 }
@@ -202,7 +128,7 @@
   opacity: 0.9;
 }
 
-.lecturer-signin-button {
+.lecturer-signup-button {
   background: #2C206D;
   color: white;
   border: none;
@@ -214,7 +140,7 @@
   transition: all 0.3s ease;
 }
 
-.lecturer-signin-button:hover {
+.lecturer-signup-button:hover {
   background: #1a1450;
 }
 
@@ -240,22 +166,22 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .lecturer-signup-card {
+  .lecturer-signin-card {
     flex-direction: column;
     max-width: 400px;
   }
   
-  .lecturer-signup-left {
+  .lecturer-signin-left {
     flex: 1;
     padding: 40px 30px;
   }
   
-  .lecturer-signup-right {
+  .lecturer-signin-right {
     flex: 1;
     padding: 40px 30px;
   }
   
-  .lecturer-signup-title {
+  .lecturer-signin-title {
     font-size: 2rem;
   }
   

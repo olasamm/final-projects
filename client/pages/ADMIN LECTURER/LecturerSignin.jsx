@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import './lecturerSignin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LecturerSignin = () => {
@@ -22,7 +23,7 @@ const LecturerSignin = () => {
 
     const allData = { id: userId, password };
     console.log('LecturerSignin.jsx: Sending to /lecturer-signin:', allData);
-    const url = 'https://final-final-project-5.onrender.com/lecturer-signin'; 
+    const url = 'http://localhost:9000/lecturer-signin'; 
 
     try {
       const res = await axios.post(url, allData);
@@ -60,46 +61,63 @@ const LecturerSignin = () => {
   };
 
   return (
-    <div className="container-fluid vh-100">
-      <div className="row h-100">
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-white p-5">
-          <h3 className="mb-4">Lecturer Login</h3>
+    <div className="lecturer-signin-container">
+      <div className="lecturer-signin-card">
+        <div className="lecturer-signin-left">
+          <h2 className="lecturer-signin-title">Lecturer Sign In</h2>
+          
           {message && (
-            <div className={`alert ${messageType === 'success' ? 'alert-success' : 'alert-danger'} w-75 mb-3`} role="alert">
+            <div
+              className={`alert-message ${
+                messageType === 'success' ? 'success' : 'error'
+              }`}
+            >
               {message}
             </div>
           )}
-          <form className="w-75" onSubmit={handleSignin}>
-            <div className="mb-3">
+
+          <form className="lecturer-signin-form" onSubmit={handleSignin}>
+            <div className="lecturer-input-group">
+              <div className="lecturer-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                </svg>
+              </div>
               <input
                 type="text"
-                className="form-control rounded-pill border-black focus:border-black focus:ring-black"
+                className="lecturer-form-input"
                 placeholder="Lecturer ID"
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}
               />
             </div>
-            <div className="mb-3">
+
+            <div className="lecturer-input-group">
+              <div className="lecturer-input-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="currentColor"/>
+                </svg>
+              </div>
               <input
                 type="password"
-                className="form-control rounded-pill border-black focus:border-black focus:ring-black"
+                className="lecturer-form-input"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="d-grid">
-              <button type="submit" className="btn btn-outline-dark rounded-pill">
-                LOGIN
-              </button>
-            </div>
+
+            <button type="submit" className="lecturer-signin-button">
+              LOGIN
+            </button>
           </form>
         </div>
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center text-white bg-primary p-5">
-          <h3 className="text-center">Welcome to Lecturer Portal</h3>
-          <p className="mt-3">New here?</p>
+
+        <div className="lecturer-signin-right">
+          <h2 className="welcome-title">Welcome to Lecturer Portal</h2>
+          <p className="welcome-text">New here?</p>
           <Link to="/lecturerSignup">
-            <button className="btn btn-dark rounded-pill px-4">REGISTER</button>
+            <button className="lecturer-signup-button">REGISTER</button>
           </Link>
         </div>
       </div>
