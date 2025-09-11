@@ -5,13 +5,13 @@ import './Navbars.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbars = () => {
- 
+  const [lecturerName, setLecturerName] = useState('');
  
 
   // Fetch student name from localStorage
   useEffect(() => {
-
-     setLecturerName(localStorage.getItem('lecturerName') || 'Lecturer');
+    // const name = localStorage.getItem('studentName');
+    const lecturerName = localStorage.getItem('lecturerName');
   }, []);
 
 

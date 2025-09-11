@@ -10,8 +10,10 @@ const LecturerSignin = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignin = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     if (!userId || !password) {
@@ -23,7 +25,7 @@ const LecturerSignin = () => {
 
     const allData = { id: userId, password };
     console.log('LecturerSignin.jsx: Sending to /lecturer-signin:', allData);
-    const url = 'https://final-projects-41c3.vercel.app/lecturer-signin'; 
+    const url = 'https://final-projects-1.onrender.com/lecturer-signin'; 
 
     try {
       const res = await axios.post(url, allData);
@@ -58,6 +60,9 @@ const LecturerSignin = () => {
       setMessageType('error');
       setTimeout(() => setMessage(''), 2000);
     }
+    finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -84,7 +89,7 @@ const LecturerSignin = () => {
                 </svg>
               </div>
               <input
-                type="text"
+                type="number"
                 className="lecturer-form-input"
                 placeholder="Lecturer ID"
                 value={userId}
@@ -107,8 +112,16 @@ const LecturerSignin = () => {
               />
             </div>
 
-            <button type="submit" className="lecturer-signin-button">
-              LOGIN
+             <button type="submit" className="lecturer-signup-button">
+
+               {isLoading ? (
+                <>
+               <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                     <span style={{ marginLeft: '8px' }}>Loading...</span>
+               </>
+              ) : (
+                <span>LOGIN</span>
+                 )}
             </button>
           </form>
         </div>
