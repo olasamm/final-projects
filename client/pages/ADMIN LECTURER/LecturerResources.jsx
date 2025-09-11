@@ -68,17 +68,17 @@ const LecturerResources = () => {
           <Sidebar />
         </div>
 
-        {/* Main Content */}
+       
         <div className="col-lg-9 col-md-8">
           <div className="my-3">
             <Navbars />
           </div>
 
-          {/* Upload Section */}
+ 
           <div className="card shadow-sm p-4">
             <h3 className="mb-3">📂 Upload Resources</h3>
             <form onSubmit={handleUpload}>
-              {/* Title */}
+
               <div className="mb-3">
                 <label className="form-label fw-bold">Title</label>
                 <input
@@ -91,7 +91,7 @@ const LecturerResources = () => {
                 />
               </div>
 
-              {/* Description */}
+
               <div className="mb-3">
                 <label className="form-label fw-bold">Description</label>
                 <textarea
@@ -104,7 +104,6 @@ const LecturerResources = () => {
                 />
               </div>
 
-              {/* File Upload */}
               <div className="mb-3">
                 <label className="form-label fw-bold">Upload File</label>
                 <input
@@ -130,7 +129,7 @@ const LecturerResources = () => {
             </button>
             </form>
 
-            {/* Status Message */}
+
             {message && (
               <div className="alert alert-info mt-3 text-center">{message}</div>
             )}

@@ -1,6 +1,6 @@
 .resources-container {
   min-height: 100vh;
-  background-color: #f3f4f6; /* Light gray background */
+  background-color: #f3f4f6; 
   padding: 24px;
 }
 
@@ -12,47 +12,47 @@
 .resources-title {
   font-size: 2rem;
   font-weight: bold;
-  color: #1f2937; /* Dark gray */
+  color: #1f2937; 
   margin-bottom: 24px;
   text-align: center;
 }
 
 .resources-error {
-  color: #dc2626; /* Red */
+  color: #dc2626;
   margin-bottom: 16px;
   text-align: center;
 }
 
 .resources-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Default: 1 column */
+  grid-template-columns: repeat(1, 1fr); 
   gap: 24px;
 }
 
 @media (min-width: 640px) {
   .resources-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
 @media (min-width: 768px) {
   .resources-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
   .resources-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 .resource-card {
-  background-color: #ffffff; /* White background */
-  border: 1px solid #e5e7eb; /* Light gray border */
+  background-color: #ffffff; 
+  border: 1px solid #e5e7eb; 
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   transition: box-shadow 0.3s ease;
 }
 
@@ -61,13 +61,13 @@
 .resource-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #374151; /* Dark gray */
+  color: #374151; 
   margin-bottom: 8px;
 }
 
 .resource-description {
   font-size: 1rem;
-  color: #6b7280; /* Medium gray */
+  color: #6b7280; 
   margin-bottom: 16px;
 }
 

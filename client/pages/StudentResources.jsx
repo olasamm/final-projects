@@ -4,8 +4,8 @@ import Sidebar from '../components/Sidebar';
 import Navbars from '../components/Navbars';
 import { FaBars } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios'; // Import axios
-import './StudentResources.css'; // Import custom CSS for grid layout
+import axios from 'axios'; 
+import './StudentResources.css'; 
 
 const StudentResources = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
