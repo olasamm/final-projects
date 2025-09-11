@@ -19,6 +19,8 @@ import Logout from '../pages/ADMIN LECTURER/Logout';
 import Error404 from '../pages/ADMIN LECTURER/Error404';
 import View from '../pages/ADMIN LECTURER/View';
 import MyPerformance from '../pages/MyPerformance';
+import LecturerResources from '../pages/ADMIN LECTURER/LecturerResources';
+import StudentResources from '../pages/StudentResources';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -43,9 +45,10 @@ function App() {
         <Route path="/settings" element={<Setting />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/performance" element={<MyPerformance />} />
+        <Route path="/LecturerResources" element={<LecturerResources />} />
+        <Route path="/StudentResources" element={< StudentResources />} />
         <Route path="/profile" element={<Error404 />} />
         <Route path="/collaborations" element={<Error404 />} />
-        <Route path="/resources" element={<Error404 />} />
         <Route path="/lecturerProfile" element={<Error404 />} />
         <Route path="/lecturerPerformance" element={<Error404 />} />
         <Route path="/lecturerResources" element={<Error404 />} />

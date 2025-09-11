@@ -5,6 +5,7 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
+express.static('uploads');
 const URI = process.env.uri
 
 port = process.env.PORT 
@@ -12,8 +13,11 @@ const User = require("./model/userModel");
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 
-
+const Resource = require('./model/resourceModel');
+const multer = require("multer");
+const upload = multer({ dest: 'uploads/' });
 
 mongoose.connect(URI)
 .then(() => {
@@ -241,6 +245,45 @@ mongoose.connect(URI)
     console.log('index.js: Data cleared');
     res.status(200).json({ message: 'Data cleared' });
   });
+
+
+
+
+
+  // Upload resource (Lecturer)
+app.post('/resources', upload.single('file'), async (req, res) => {
+  try {
+    console.log('Request body:', req.body);
+    console.log('Uploaded file:', req.file);
+
+    const { title, description } = req.body;
+    const filePath = req.file ? req.file.path : null;
+
+    if (!title || !description || !filePath) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    const resource = new Resource({ title, description, filePath });
+    await resource.save();
+
+    res.status(201).json({ message: 'Resource added successfully' });
+  } catch (error) {
+    console.error('Error adding resource:', error);
+    res.status(500).json({ message: 'Failed to add resource' });
+  }
+});
+
+// Fetch resources (Student)
+app.get('/resources', async (req, res) => {
+  try {
+    const resources = await Resource.find();
+    res.status(200).json(resources);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch resources' });
+  }
+});
+
+
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
