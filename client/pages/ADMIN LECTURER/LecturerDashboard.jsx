@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-import LecturerSidebar from '../../components/LecturerSidebar';
 import Navbars from '../../components/Navbars';
 import './board.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LecturerSidebar from '../../components/LecturerSidebar';
 
 const LecturerDashboard = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);

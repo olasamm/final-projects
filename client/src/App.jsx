@@ -44,9 +44,9 @@ function App() {
         <Route path="/lecturer-view/:assignmentId/:submissionIndex" element={<View />} />
         <Route path="/settings" element={<Setting />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/resources" element={<LecturerResources />} />
         <Route path="/performance" element={< MyPerformance />} />
 
-        <Route path="/LecturerResources" element={<LecturerResources />} />
         <Route path="/StudentResources" element={< StudentResources />} />
         <Route path="/profile" element={<Error404 />} />
         <Route path="/collaborations" element={<Error404 />} />
