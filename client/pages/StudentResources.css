@@ -1,45 +1,75 @@
-.student-resources {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem;
+.resources-container {
+  min-height: 100vh;
+  background-color: #f3f4f6; /* Light gray background */
+  padding: 24px;
 }
 
-.resources-header {
+.resources-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.resources-title {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: #1f2937; /* Dark gray */
+  margin-bottom: 24px;
   text-align: center;
 }
 
-.resource-grid {
+.resources-error {
+  color: #dc2626; /* Red */
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.resources-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(1, 1fr); /* Default: 1 column */
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .resources-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .resources-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .resources-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+  }
 }
 
 .resource-card {
-  background: #fff;
-  padding: 1rem;
+  background-color: #ffffff; /* White background */
+  border: 1px solid #e5e7eb; /* Light gray border */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: box-shadow 0.3s ease;
 }
 
-.resource-card h3 {
-  margin: 0 0 0.5rem;
+
+
+.resource-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151; /* Dark gray */
+  margin-bottom: 8px;
 }
 
-.resource-card p {
-  margin: 0 0 0.5rem;
-  color: #666;
+.resource-description {
+  font-size: 1rem;
+  color: #6b7280; /* Medium gray */
+  margin-bottom: 16px;
 }
 
-.loading-message,
-.no-resources {
-  text-align: center;
-  color: #666;
-}
 
-.error-message {
-  color: red;
-  margin-bottom: 1rem;
-  text-align: center;
-}
+

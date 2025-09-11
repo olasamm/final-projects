@@ -14,7 +14,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/profile" className="nav-link">
+          <Link to="/settings" className="nav-link">
             <FaUser className="me-2" /> My Profile
           </Link>
         </li>
@@ -34,12 +34,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/collaborations" className="nav-link">
-            <FaUsers className="me-2" /> Collaborations
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/resources" className="nav-link">
+          <Link to="/studentResources" className="nav-link">
             <FaBook className="me-2" /> Resources
           </Link>
         </li>
