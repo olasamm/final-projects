@@ -32,7 +32,7 @@ const LecturerSignup = () => {
 
     const allData = { id: userId, name, mail, password };
     console.log('LecturerSignup.jsx: Sending to /lecturer-signup:', allData);
-    const url = 'http://localhost:9000/lecturer-signup'; 
+    const url = 'https://final-projects-41c3.vercel.app/lecturer-signup'; 
 
     try {
       const res = await axios.post(url, allData);

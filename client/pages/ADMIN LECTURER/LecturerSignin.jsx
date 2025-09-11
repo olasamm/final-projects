@@ -23,7 +23,7 @@ const LecturerSignin = () => {
 
     const allData = { id: userId, password };
     console.log('LecturerSignin.jsx: Sending to /lecturer-signin:', allData);
-    const url = 'http://localhost:9000/lecturer-signin'; 
+    const url = 'https://final-projects-41c3.vercel.app/lecturer-signin'; 
 
     try {
       const res = await axios.post(url, allData);

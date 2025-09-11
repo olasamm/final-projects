@@ -31,7 +31,7 @@ const Signup = () => {
     }
 
     const allData = { id: userId, name, mail, password };
-    const url = 'http://localhost:9000/submit'; 
+    const url = 'https://final-projects-41c3.vercel.app/submit'; 
 
     try {
       const res = await axios.post(url, allData);

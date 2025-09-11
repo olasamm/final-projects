@@ -5,12 +5,13 @@ import './Navbars.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbars = () => {
-  const [studentName, setStudentName] = useState('');
+ 
+ 
 
   // Fetch student name from localStorage
   useEffect(() => {
-    const name = localStorage.getItem('studentName');
-    setStudentName(name || 'Guest');
+
+     setLecturerName(localStorage.getItem('lecturerName') || 'Lecturer');
   }, []);
 
 
@@ -44,7 +45,7 @@ const formattedTime = currentDate.toLocaleTimeString('en-US', {
           className="rounded-circle me-2"
           style={{ width: '40px' }}
         />
-        <strong>{studentName}</strong>
+        <strong>{lecturerName}</strong>
       </div>
     </div>
   );
