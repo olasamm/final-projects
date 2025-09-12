@@ -25,7 +25,7 @@ const LecturerSignin = () => {
 
     const allData = { id: userId, password };
     console.log('LecturerSignin.jsx: Sending to /lecturer-signin:', allData);
-    const url = 'https://final-projects-1.onrender.com/lecturer-signin'; 
+    const url = 'https://final-projects-1.onrender.com/lecturer/signin'; // Updated endpoint
 
     try {
       const res = await axios.post(url, allData);
@@ -40,9 +40,11 @@ const LecturerSignin = () => {
         }
         localStorage.setItem('lecturerId', id);
         localStorage.setItem('lecturerName', name);
+        const uniqueId = crypto.randomUUID(); // Generate a unique ID for the lecturer session
+        localStorage.setItem('lecturerDashboardId', uniqueId); // Store the unique ID in localStorage
         setMessage('Lecturer Signed In Successfully');
         setMessageType('success');
-        setTimeout(() => navigate('/lecturerDashboard'), 2000);
+        setTimeout(() => navigate(`/lecturerDashboard/${uniqueId}`), 2000);
       }
     } catch (error) {
       console.log('LecturerSignin.jsx: Signin error:', error.response ? error.response.data : error.message);

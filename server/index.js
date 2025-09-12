@@ -10,6 +10,8 @@ const URI = process.env.uri
 
 port = process.env.PORT 
 const User = require("./model/userModel");
+const Student = require('./model/studentModel');
+const Lecturer = require('./model/lecturerModel');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,112 +31,77 @@ mongoose.connect(URI)
 
 
 
-  
-  app.post('/submit', async (req, res) => {
-    try {
-      const { id, name, mail, password } = req.body;
-      console.log('Received for /submit:', { id, name, mail, password });
-      if (!id || !name || !mail || !password) {
-        return res.status(400).json({ error: 'Missing required fields' });
-      }
-      if (mongoose.connection.readyState !== 1) {
-        console.error('MongoDB not connected:', mongoose.connection.readyState);
-        return res.status(500).json({ error: 'Database not connected' });
-      }
-      const existingUser = await User.findOne({ userId: id });
-      console.log('Existing user check:', existingUser);
-      if (existingUser) {
-        return res.status(400).json({ error: 'User already exists' });
-      }
-      const user = new User({ userId: id, name, mail, password });
-      const savedUser = await user.save();
-      console.log('Saved user:', savedUser);
-      res.status(201).json({ id, name, mail });
-    } catch (error) {
-      console.error('Error signing up:', error);
-      if (error.name === 'ValidationError') {
-        return res.status(400).json({ error: 'Validation failed: ' + error.message });
-      }
-      if (error.code === 11000) {
-        return res.status(400).json({ error: 'Duplicate ID detected' });
-      }
-      res.status(500).json({ error: 'Failed to save user: ' + error.message });
+  // Student Signup
+app.post('/student/signup', async (req, res) => {
+  try {
+    const { matricNumber, name, email, password } = req.body;
+    if (!matricNumber || !name || !email || !password) {
+      return res.status(400).json({ error: 'Missing required fields' });
     }
-  });
-  
-  app.post('/signin', async (req, res) => {
-    try {
-      const { id, password } = req.body;
-      console.log('Received id:', id, 'Type:', typeof id);
-      const user = await User.findOne({ userId: id }); 
-      console.log('Found user:', user); 
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      if (user.password !== password) {
-        return res.status(401).json({ error: 'Invalid password' });
-      }
-      res.status(200).json({ message: 'User signed in successfully', id, name: user.name });
-    } catch (error) {
-      console.error('Error signing in:', error);
-      res.status(500).json({ error: 'Internal server error' });
+    const existingStudent = await Student.findOne({ matricNumber });
+    if (existingStudent) {
+      return res.status(400).json({ error: 'Student already exists' });
     }
-  });
+    const student = new Student({ matricNumber, name, email, password });
+    await student.save();
+    res.status(201).json({ message: 'Student signed up successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to sign up student: ' + error.message });
+  }
+});
 
-
-
-
-
-  app.post('/lecturer-signup', async (req, res) => {
-    try {
-      const { id, name, mail, password } = req.body;
-      console.log('Received for /submit:', { id, name, mail, password });
-      if (!id || !name || !mail || !password) {
-        return res.status(400).json({ error: 'Missing required fields' });
-      }
-      if (mongoose.connection.readyState !== 1) {
-        console.error('MongoDB not connected:', mongoose.connection.readyState);
-        return res.status(500).json({ error: 'Database not connected' });
-      }
-      const existingUser = await User.findOne({ userId: id });
-      console.log('Existing user check:', existingUser);
-      if (existingUser) {
-        return res.status(400).json({ error: 'User already exists' });
-      }
-      const user = new User({ userId: id, name, mail, password });
-      const savedUser = await user.save();
-      console.log('Saved user:', savedUser);
-      res.status(201).json({ id, name, mail });
-    } catch (error) {
-      console.error('Error signing up:', error);
-      if (error.name === 'ValidationError') {
-        return res.status(400).json({ error: 'Validation failed: ' + error.message });
-      }
-      if (error.code === 11000) {
-        return res.status(400).json({ error: 'Duplicate ID detected' });
-      }
-      res.status(500).json({ error: 'Failed to save user: ' + error.message });
+// Lecturer Signup
+app.post('/lecturer/signup', async (req, res) => {
+  try {
+    const { staffId, name, email, password, department } = req.body;
+    if (!staffId || !name || !email || !password || !department) {
+      return res.status(400).json({ error: 'Missing required fields' });
     }
-  });
-
-  app.post('/lecturer-signin', async (req, res) => {
-    try {
-      const { id, password } = req.body;
-      console.log('Received id:', id, 'Type:', typeof id); 
-      const user = await User.findOne({ userId: id }); 
-      console.log('Found user:', user); 
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      if (user.password !== password) {
-        return res.status(401).json({ error: 'Invalid password' });
-      }
-      res.status(200).json({ message: 'User signed in successfully', id, name: user.name });
-    } catch (error) {
-      console.error('Error signing in:', error);
-      res.status(500).json({ error: 'Internal server error' });
+    const existingLecturer = await Lecturer.findOne({ staffId });
+    if (existingLecturer) {
+      return res.status(400).json({ error: 'Lecturer already exists' });
     }
-  });
+    const lecturer = new Lecturer({ staffId, name, email, password, department });
+    await lecturer.save();
+    res.status(201).json({ message: 'Lecturer signed up successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to sign up lecturer: ' + error.message });
+  }
+});
+
+// Student Signin
+app.post('/student/signin', async (req, res) => {
+  try {
+    const { matricNumber, password } = req.body;
+    const student = await Student.findOne({ matricNumber });
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+    if (student.password !== password) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+    res.status(200).json({ message: 'Student signed in successfully', id: student._id, name: student.name });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to sign in student: ' + error.message });
+  }
+});
+
+// Lecturer Signin
+app.post('/lecturer/signin', async (req, res) => {
+  try {
+    const { staffId, password } = req.body;
+    const lecturer = await Lecturer.findOne({ staffId });
+    if (!lecturer) {
+      return res.status(404).json({ error: 'Lecturer not found' });
+    }
+    if (lecturer.password !== password) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+    res.status(200).json({ message: 'Lecturer signed in successfully', id: lecturer._id, name: lecturer.name });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to sign in lecturer: ' + error.message });
+  }
+});
 
 
 

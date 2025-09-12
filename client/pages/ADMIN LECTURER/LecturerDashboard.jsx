@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import Navbars from '../../components/Navbars';
 import './board.css';
@@ -15,6 +15,7 @@ const LecturerDashboard = () => {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -78,6 +79,24 @@ const LecturerDashboard = () => {
       return () => clearTimeout(timer);
     }
   }, [message]);
+
+  useEffect(() => {
+    if (!id) {
+      setMessage('Invalid lecturer dashboard ID.');
+      setMessageType('danger');
+      navigate('/lecturerSignin');
+      return;
+    }
+
+    if (id !== localStorage.getItem('lecturerDashboardId')) {
+      setMessage('Unauthorized access.');
+      setMessageType('danger');
+      navigate('/lecturerSignin');
+      return;
+    }
+
+    console.log('Lecturer Dashboard ID validated:', id);
+  }, [id, navigate]);
 
   return (
     <div className="container-fluid">

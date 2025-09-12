@@ -24,7 +24,7 @@ const Signin = () => {
     }
 
     const allData = { id: userId, password };
-    const url = 'https://final-projects-1.onrender.com/signin'; 
+    const url = 'https://final-projects-1.onrender.com/student/signin'; // Updated endpoint
 
     try {
       const res = await axios.post(url, allData);
@@ -40,7 +40,10 @@ const Signin = () => {
         localStorage.setItem('studentName', name);
         setMessage('User Signed In Successfully');
         setMessageType('success');
-        setTimeout(() => navigate('/dashboard'), 2000);
+        
+        const uniqueId = crypto.randomUUID(); // Generate a unique ID for the session
+        localStorage.setItem('dashboardId', uniqueId); // Store the unique ID in localStorage
+        setTimeout(() => navigate(`/dashboard/${uniqueId}`), 2000);
       }
     } catch (error) {
       if (error.response) {

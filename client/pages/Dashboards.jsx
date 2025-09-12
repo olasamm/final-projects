@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import Navbars from '../components/Navbars';
 import { FaBars } from 'react-icons/fa';
@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 
 const Dashboards = () => {
+  const { id } = useParams(); // Extract the id parameter from the URL
   const navigate = useNavigate();
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [studentName, setStudentName] = useState('');
@@ -55,6 +56,31 @@ const Dashboards = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [navigate, studentId]);
+
+  useEffect(() => {
+    if (!id) {
+      setMessage('Invalid dashboard ID.');
+      setMessageType('error');
+      navigate('/signin');
+      return;
+    }
+
+    if (id !== localStorage.getItem('dashboardId')) {
+      setMessage('Unauthorized access.');
+      setMessageType('error');
+      navigate('/signin');
+      return;
+    }
+
+    console.log('Dashboard ID validated:', id);
+  }, [id, navigate]);
+
+  useEffect(() => {
+    console.log('Dashboard ID:', id); // Log the dashboard ID for debugging
+
+    // Use the id parameter to fetch specific data for this dashboard
+    // Example: Fetch assignments or notifications for the given id
+  }, [id, navigate, studentId]);
 
   useEffect(() => {
     if (message) {

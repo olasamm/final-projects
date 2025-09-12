@@ -33,7 +33,7 @@ const Signup = () => {
     }
 
     const allData = { id: userId, name, mail, password };
-    const url = 'https://final-projects-1.onrender.com/submit'; 
+    const url = 'https://final-projects-1.onrender.com/student/signup'; 
 
     try {
       const res = await axios.post(url, allData);

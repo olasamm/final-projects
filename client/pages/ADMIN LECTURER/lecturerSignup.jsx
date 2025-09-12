@@ -35,7 +35,7 @@ const LecturerSignup = () => {
 
     const allData = { id: userId, name, mail, password };
     console.log('LecturerSignup.jsx: Sending to /lecturer-signup:', allData);
-    const url = 'https://final-projects-1.onrender.com/lecturer-signup'; 
+    const url = 'https://final-projects-1.onrender.com/lecturer/signup'; 
 
     try {
       const res = await axios.post(url, allData);

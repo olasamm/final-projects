@@ -31,14 +31,14 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/dashboard" element={<Dashboards />} />
+        <Route path="/dashboard/:id" element={<Dashboards />} />
         <Route path="/assignment" element={<Assignment />} />
         <Route path="/assignment/:id" element={<Open />} />
         <Route path="/submit" element={<Submit />} />
         <Route path="/submission" element={<Submission />} />
         <Route path="/lecturerSignup" element={<LecturerSignup />} />
         <Route path="/lecturerSignin" element={<LecturerSignin />} />
-        <Route path="/lecturerDashboard" element={<LecturerDashboard />} />
+        <Route path="/lecturerDashboard/:id" element={<LecturerDashboard />} />
         <Route path="/assignmentss" element={<LecturerAssignment />} />
         <Route path="/lecturer-submission/:id" element={<LecturerSubmission />} />
         <Route path="/lecturer-view/:assignmentId/:submissionIndex" element={<View />} />
