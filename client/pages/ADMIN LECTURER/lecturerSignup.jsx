@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const LecturerSignup = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
-  const [userId, setUserId] = useState('');
+  const [staffId, setStaffId] = useState('');
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -19,10 +19,11 @@ const LecturerSignup = () => {
     setIsLoading(true);
     e.preventDefault();
 
-    if (!name || !userId || !mail || !password) {
+    if (!name || !staffId || !mail || !password) {
       setMessage('Please fill all the fields');
       setMessageType('error');
       setTimeout(() => setMessage(''), 2000);
+      setIsLoading(false); // Ensure loading state is reset
       return;
     }
 
@@ -33,9 +34,14 @@ const LecturerSignup = () => {
       return;
     }
 
-    const allData = { id: userId, name, mail, password };
+    const allData = {
+      name,
+      staffId,
+      email: mail,
+      password,
+    };
     console.log('LecturerSignup.jsx: Sending to /lecturer-signup:', allData);
-    const url = 'https://final-projects-1.onrender.com/lecturer/signup'; 
+    const url = 'http://localhost:9000/lecturer/signup'; // Changed to localhost for testing
 
     try {
       const res = await axios.post(url, allData);
@@ -106,8 +112,8 @@ const LecturerSignup = () => {
                 type="number"
                 className="lecturer-form-input"
                 placeholder="Lecturer ID"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
+                value={staffId}
+                onChange={(e) => setStaffId(e.target.value)}
               />
             </div>
 
@@ -133,13 +139,14 @@ const LecturerSignup = () => {
                 </svg>
               </div>
               <input
-                type="password"
+                type="text"
                 className="lecturer-form-input"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+
 
 
              <button type="submit" className="lecturer-signup-button">

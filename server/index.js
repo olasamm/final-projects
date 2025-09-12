@@ -9,7 +9,7 @@ express.static('uploads');
 const URI = process.env.uri
 
 port = process.env.PORT 
-const User = require("./model/userModel");
+// const User = require("./model/userModel");
 const Student = require('./model/studentModel');
 const Lecturer = require('./model/lecturerModel');
 app.use(cors());
@@ -53,15 +53,8 @@ app.post('/student/signup', async (req, res) => {
 // Lecturer Signup
 app.post('/lecturer/signup', async (req, res) => {
   try {
-    const { staffId, name, email, password, department } = req.body;
-    if (!staffId || !name || !email || !password || !department) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-    const existingLecturer = await Lecturer.findOne({ staffId });
-    if (existingLecturer) {
-      return res.status(400).json({ error: 'Lecturer already exists' });
-    }
-    const lecturer = new Lecturer({ staffId, name, email, password, department });
+    console.log('Incoming Request Body:', req.body);
+    const lecturer = new Lecturer(req.body);
     await lecturer.save();
     res.status(201).json({ message: 'Lecturer signed up successfully' });
   } catch (error) {
@@ -256,6 +249,10 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
+app.use((req, res, next) => {
+  console.log('Incoming Request:', req.method, req.url, req.body);
+  next();
+});
 
 
 
